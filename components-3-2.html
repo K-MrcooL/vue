@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+      <meta charset="utf-8">
+      <title>My first Vue app</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+      <script src="https://unpkg.com/vue@3.5.0/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+        <h1 class="bg-primary text-white display-4 px-3">Vue3</h1>
+        <div id="blog-post-demo" class="demo">
+            <blog-post
+            v-for="post in posts"
+            :key="post.id"
+            :title="post.title"
+            ></blog-post>
+        </div>
+
+       <style>
+            .demo{
+                font-family:sens-serif;
+                border: 1px solid #eee;
+                border-radius: 2px;
+                padding: 20px 30px;
+                margin-top: 1em;
+                margin-bottom: 40px;
+                user-select: none;
+                overflow-x: auto;
+            }
+        </style>
+
+        <script>
+            const App = {
+                data(){
+                    return{
+                        posts:[
+                            {id: 1,title: 'Vueとの航海'},
+                            {id: 2,title: 'Vueとの旅'},
+                            {id: 3,title: 'Vue旅行記'}
+
+                        ]
+                    }
+                }
+            }
+
+            const app= Vue.createApp(App)
+
+            app.component('blog-post',{
+                props: ['title'],
+                template: `<h4>{{ title }}</h4>`
+            })
+
+                app.mount('#blog-post-demo')
+        </script>
+    </body>
+</html>
